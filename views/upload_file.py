@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 import json
-import tensorflow as tf
+# import tensorflow as tf
 from flask import Blueprint, render_template, redirect, request, flash
 from werkzeug.utils import secure_filename
 import requests

@@ -19,6 +19,15 @@ RUN apt install -y python3-venv
 
 RUN apt-get install -y git
 
+RUN git clone https://github.com/roug84/flask_docker_tf_m1.git
+
+#RUN CD flask_docker_tf_m1
+
+RUN pip install gunicorn flask python-dotenv pandas
+
+WORKDIR /flask_docker_tf_m1
+
+CMD exec gunicorn --bind 0.0.0.0:8000 --workers 1 --threads 1 --timeout 0 app:app
 
 
 
