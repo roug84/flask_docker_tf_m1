@@ -88,7 +88,7 @@ def view():
             # print(tf.argmax(model.predict(x_train), axis=1))        # feat_y_list.append(io_final_data_set['y'][i])
         x_batch = np.asarray(batch_input).reshape(len(batch_input), 126)
 
-        MODEL_URI = 'http://localhost:8501/v1/models/servingpa:predict'
+        MODEL_URI = 'http://0.0.0.0:8501/v1/models/servingpa:predict'
         acts = []
         for i in range(0, 200*int(len(x_batch)/200), 200):
             data = json.dumps({
