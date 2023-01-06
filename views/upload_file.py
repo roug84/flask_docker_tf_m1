@@ -99,7 +99,7 @@ def view():
             # print(result)
             prediction = np.squeeze(result['outputs'][0])
             # print(prediction)
-            acts.append(tf.argmax(prediction, axis=1).numpy())
+            acts.append(np.argmax(prediction, axis=1))
         list_acts = []
         for j in range(len(np.hstack(acts))):
             list_acts.append(activities_label[np.hstack(acts)[j]])  # feat_y_list.append(io_final_data_set['y'][i])
