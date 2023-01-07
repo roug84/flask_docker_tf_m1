@@ -94,7 +94,10 @@ def view():
             data = json.dumps({
                 'inputs': x_batch[i:i + 200, :].reshape(1, 200, 126).tolist()
             })
-            response = requests.post(MODEL_URI, data=data, timeout=(2, 10))
+            session = requests.Session()
+            session.trust_env = False
+            # response = session.get(url, json=my_json)
+            response = session.post(MODEL_URI, data=data, timeout=(2, 10))
             result = json.loads(response.text)
             # print(result)
             prediction = np.squeeze(result['outputs'][0])

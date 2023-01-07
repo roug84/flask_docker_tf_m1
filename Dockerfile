@@ -29,6 +29,8 @@ WORKDIR /flask_docker_tf_m1
 
 EXPOSE 8002
 
+ENTRYPOINT [ "python" ]
+
 #CMD exec gunicorn --bind localhost:8000 --workers 1 --threads 1 --timeout 0 app:app
 
 # docker run -t --rm -p 0.0.0.0:8501:8501 --mount type=bind,source=/Users/hector/DiaHecDev/results/Models_DL/servingpa,target=/models/servingpa/1/ -e MODEL_NAME=servingpa emacski/tensorflow-serving:latest-linux_arm64
