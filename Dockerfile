@@ -27,7 +27,7 @@ RUN pip install gunicorn flask python-dotenv pandas requests
 
 WORKDIR /flask_docker_tf_m1
 
-#EXPOSE 8000:8000 --publish=8000:8080
+EXPOSE 8002
 
 #CMD exec gunicorn --bind localhost:8000 --workers 1 --threads 1 --timeout 0 app:app
 
