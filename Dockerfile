@@ -29,7 +29,7 @@ WORKDIR /flask_docker_tf_m1
 
 EXPOSE 8002
 
-ENTRYPOINT [ "python" ]
+#ENTRYPOINT [ "python" ]
 
 #CMD exec gunicorn --bind localhost:8000 --workers 1 --threads 1 --timeout 0 app:app
 

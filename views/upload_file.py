@@ -7,8 +7,6 @@ import json
 from flask import Blueprint, render_template, redirect, request, flash
 from werkzeug.utils import secure_filename
 import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
 
 activities_label = {0: "L0: nothing", 1: "L1: Standing still (1 min)", 2: "L2: Sitting and relaxing (1 min)",
@@ -92,20 +90,20 @@ def view():
             # print(tf.argmax(model.predict(x_train), axis=1))        # feat_y_list.append(io_final_data_set['y'][i])
         x_batch = np.asarray(batch_input).reshape(len(batch_input), 126)
 
-        MODEL_URI = 'http://0.0.0.0:8501/v1/models/servingpa:predict'
+        MODEL_URI = 'http://127.0.0.1:8501/v1/models/servingpa:predict'
         acts = []
         for i in range(0, 200*int(len(x_batch)/200), 200):
             data = json.dumps({
                 'inputs': x_batch[i:i + 200, :].reshape(1, 200, 126).tolist()
             })
-            session = requests.Session()
-            retry = Retry(connect=3, backoff_factor=0.5)
-            adapter = HTTPAdapter(max_retries=retry)
-            session.mount('http://', adapter)
-            # session.mount('https://', adapter)
-            session.trust_env = False
+            # session = requests.Session()
+            # retry = Retry(connect=3, backoff_factor=0.5)
+            # adapter = HTTPAdapter(max_retries=retry)
+            # session.mount('http://', adapter)
+            # # session.mount('https://', adapter)
+            # session.trust_env = False
             # response = session.get(url, json=my_json)
-            response = session.post(MODEL_URI, data, adapter)
+            response = requests.post(MODEL_URI, data)
 
             result = json.loads(response.text)
             # print(result)
