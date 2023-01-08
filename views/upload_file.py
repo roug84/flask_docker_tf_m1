@@ -7,6 +7,10 @@ import json
 from flask import Blueprint, render_template, redirect, request, flash
 from werkzeug.utils import secure_filename
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+
 activities_label = {0: "L0: nothing", 1: "L1: Standing still (1 min)", 2: "L2: Sitting and relaxing (1 min)",
                     3: "L3: Lying down (1 min)", 4: "L4: Walking (1 min)",
                     5: "L5: Climbing stairs (1 min)", 6: "L6: Waist bends forward (20x)",
@@ -95,9 +99,14 @@ def view():
                 'inputs': x_batch[i:i + 200, :].reshape(1, 200, 126).tolist()
             })
             session = requests.Session()
+            retry = Retry(connect=3, backoff_factor=0.5)
+            adapter = HTTPAdapter(max_retries=retry)
+            # session.mount('http://', adapter)
+            # session.mount('https://', adapter)
             session.trust_env = False
             # response = session.get(url, json=my_json)
-            response = session.post(MODEL_URI, data=data, timeout=(2, 10))
+            response = session.post(MODEL_URI, data, adapter)
+
             result = json.loads(response.text)
             # print(result)
             prediction = np.squeeze(result['outputs'][0])
