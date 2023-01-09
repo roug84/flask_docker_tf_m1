@@ -103,7 +103,9 @@ def view():
             # # session.mount('https://', adapter)
             # session.trust_env = False
             # response = session.get(url, json=my_json)
-            response = requests.post(MODEL_URI, data)
+            session = requests.Session()
+            session.trust_env = False
+            response = session.post(MODEL_URI, data)
 
             result = json.loads(response.text)
             # print(result)
