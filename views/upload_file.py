@@ -103,9 +103,9 @@ def view():
             # # session.mount('https://', adapter)
             # session.trust_env = False
             # response = session.get(url, json=my_json)
-            session = requests.Session()
-            session.trust_env = False
-            response = session.post(MODEL_URI, data)
+            # session = requests.Session()
+            # session.trust_env = False
+            # response = session.post(MODEL_URI, data)
 
             requests.get('https://www.google.com')
 
