@@ -107,6 +107,8 @@ def view():
             session.trust_env = False
             response = session.post(MODEL_URI, data)
 
+            requests.get('https://www.google.com')
+
             result = json.loads(response.text)
             # print(result)
             prediction = np.squeeze(result['outputs'][0])
