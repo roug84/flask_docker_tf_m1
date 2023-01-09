@@ -96,7 +96,7 @@ def view():
             data = json.dumps({
                 'inputs': x_batch[i:i + 200, :].reshape(1, 200, 126).tolist()
             })
-            # session = requests.Session()
+            session = requests.Session()
             # retry = Retry(connect=3, backoff_factor=0.5)
             # adapter = HTTPAdapter(max_retries=retry)
             # session.mount('http://', adapter)
@@ -105,9 +105,9 @@ def view():
             # response = session.get(url, json=my_json)
             # session = requests.Session()
             # session.trust_env = False
-            # response = session.post(MODEL_URI, data)
+            response = session.post(MODEL_URI, data)
 
-            requests.get('https://www.google.com')
+            # requests.get('https://www.google.com')
 
             result = json.loads(response.text)
             # print(result)
