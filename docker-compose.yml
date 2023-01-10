@@ -4,22 +4,4 @@ services:
     build: .
     restart: always
     ports:
-      - 8002:8002
-    command: gunicorn --bind 0.0.0.0:8002 --workers 8 --threads 1 --timeout 0 app:app
-    networks:
-      - ml-network
-  tfmodel:
-    image: emacski/tensorflow-serving:latest-linux_arm64
-    volumes:
-      - type: bind
-        source: /Users/hector/DiaHecDev/results/Models_DL/servingpa
-        target: /models/servingpa/1/
-    ports:
-      - "8501:8501"
-    environment:
-      - MODEL_NAME=servingpa
-    networks:
-      - ml-network
-networks:
-  ml-network:
-    driver: bridge
+      - 8000:8000

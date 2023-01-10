@@ -27,7 +27,9 @@ RUN pip install gunicorn flask python-dotenv pandas requests
 
 WORKDIR /flask_docker_tf_m1
 
-EXPOSE 8002
+EXPOSE 8000
+
+CMD [ "python3", "app.py" ]
 
 #ENTRYPOINT [ "python" ]
 
