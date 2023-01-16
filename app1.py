@@ -1,20 +1,21 @@
-from flask import Flask, request, jsonify
+"""
+Flask running blueprints
+"""
+from flask import Flask
+import os
+from dotenv import load_dotenv
+from views.index import bp as index_bp
+from views.upload_file import bp10 as upload_file_bp
 
+load_dotenv()
 app = Flask(__name__)
+name = os.getenv('NAME')
 
-@app.route('/')
-def index():
-    return jsonify('App1')
-
-@app.route('/ep', methods = ['POST'])
-def ep():
-
-    data = {}
-
-    # code for receiving data
-    # processing data and saving results in dictionary
-
-    return jsonify(data)
+# Register BPs
+app.register_blueprint(index_bp)
+app.register_blueprint(upload_file_bp)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8004, debug=True)
+    # app.secret_key = os.urandom(12)
+    #app.run(debug = True)
+    app.run(host="0.0.0.0", port='8000')
