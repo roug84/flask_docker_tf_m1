@@ -29,6 +29,8 @@ WORKDIR /flask_docker_tf_m1
 
 EXPOSE 8000
 
+EXPOSE 8002
+
 #CMD [ "python3", "app.py" ]
 
 #ENTRYPOINT [ "python" ]
