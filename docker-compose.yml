@@ -8,6 +8,14 @@ services:
     command: gunicorn --bind 0.0.0.0:8002 --workers 8 --threads 1 --timeout 0 app:app
     networks:
       - ml-network
+  app1:
+    build: .
+    restart: always
+    ports:
+      - 8003:8003
+    command: gunicorn --bind 0.0.0.0:8003 --workers 8 --threads 1 --timeout 0 app2:app
+    networks:
+      - ml-network
   tfmodel:
     image: emacski/tensorflow-serving:latest-linux_arm64
     volumes:
@@ -16,6 +24,7 @@ services:
         target: /models/servingpa/1/
     ports:
       - "8501:8501"
+      - "8500:8500"
     environment:
       - MODEL_NAME=servingpa
     networks:
