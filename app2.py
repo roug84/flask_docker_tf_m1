@@ -13,7 +13,7 @@ def index():
 def ep():
     data = {}
 
-    res = requests.post('http://0.0.0.0:5001/ep', files=data)
+    res = requests.post('http://0.0.0.0:8001/ep', files=data)
     res = res.json()
 
     return jsonify(data)
