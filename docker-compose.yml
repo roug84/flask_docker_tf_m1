@@ -4,24 +4,16 @@ services:
     build: .
     restart: always
     ports:
-      - 8002:8002
-    command: gunicorn --bind 0.0.0.0:8002 --workers 8 --threads 1 --timeout 0 app:app
+      - 8000:8000
+    command: gunicorn --bind 0.0.0.0:8000 --workers 8 --threads 1 --timeout 0 app:app
     networks:
       - ml-network
   app1:
     build: .
     restart: always
     ports:
-      - 8004:8004
-    command: gunicorn --bind 0.0.0.0:8004 --workers 8 --threads 1 --timeout 0 app1:app
-    networks:
-      - ml-network
-  app2:
-    build: .
-    restart: always
-    ports:
-      - 8003:8003
-    command: gunicorn --bind 0.0.0.0:8003 --workers 8 --threads 1 --timeout 0 app2:app
+      - 8001:8001
+    command: ls
     networks:
       - ml-network
   tfmodel:
