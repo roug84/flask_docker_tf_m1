@@ -91,6 +91,7 @@ def view():
         x_batch = np.asarray(batch_input).reshape(len(batch_input), 126)
 
         MODEL_URI = 'http://127.0.0.1:8501/v1/models/servingpa:predict'
+        MODEL_URI = 'http://192.168.1.38:8501/v1/models/servingpa:predict'
         acts = []
         for i in range(0, 200*int(len(x_batch)/200), 200):
             data = json.dumps({

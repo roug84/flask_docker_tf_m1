@@ -13,7 +13,7 @@ services:
     restart: always
     ports:
       - 8001:8001
-    command: ls
+    command: gunicorn --bind 0.0.0.0:8001 --workers 8 --threads 1 --timeout 0 appa:app
     networks:
       - ml-network
   tfmodel:
@@ -27,6 +27,7 @@ services:
       - "8500:8500"
     environment:
       - MODEL_NAME=servingpa
+    restart: always
     networks:
       - ml-network
 networks:

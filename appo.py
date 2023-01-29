@@ -13,11 +13,11 @@ def index():
 def ep():
     data = {}
 
-    res = requests.post('http://0.0.0.0:8002/ep', files=data)
+    res = requests.post('http://0.0.0.0:8001/ep', files=data)
     res = res.json()
 
     return jsonify(data)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8003, debug=True)
+    app.run(host='0.0.0.0', port=8001, debug=True)
